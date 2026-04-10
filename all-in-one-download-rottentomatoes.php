@@ -3,7 +3,7 @@
  * Plugin Name: All-in-one Download Rotten Tomatoes
  * Plugin URI: https://github.com/tcacamou-ops/All-in-one-Download-Rottentomatoes
  * Description: Add-on for All-in-one Download that adds support for **Rotten Tomatoes** URLs.
- * Version: 0.0.3
+ * Version: 0.0.4
  * Author: tcacamou
  * Author URI: https://github.com/tcacamou-ops
  * Text Domain: all-in-one-download-rotten-tomatoes
