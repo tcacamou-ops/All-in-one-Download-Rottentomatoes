@@ -3,7 +3,7 @@
  * Plugin Name: All-in-one Download Rotten Tomatoes
  * Plugin URI: https://github.com/tcacamou-ops/All-in-one-Download-Rottentomatoes
  * Description: Add-on for All-in-one Download that adds support for **Rotten Tomatoes** URLs.
- * Version: 0.0.2
+ * Version: 0.0.3
  * Author: tcacamou
  * Author URI: https://github.com/tcacamou-ops
  * Text Domain: all-in-one-download-rotten-tomatoes
@@ -15,6 +15,7 @@
 namespace AllI1D\RottenTomatoes;
 
 use AllI1D\Actions\Logs;
+use honemo\updater\Updater;
 
 // Standard plugin security, keep this line in place.
 defined( 'ABSPATH' ) || die();
@@ -23,7 +24,6 @@ defined( 'ABSPATH' ) || die();
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 if ( is_admin() ) {
-    new Admin();
     $updater = new Updater(
         __FILE__,                                      // Main plugin file.
         'https://github.com/tcacamou-ops/All-in-one-Download-Rottentomatoes'  // Repository URL.
