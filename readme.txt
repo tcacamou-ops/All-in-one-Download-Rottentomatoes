@@ -4,7 +4,7 @@ Tags: download, rotten tomatoes, movies, tv shows, media
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.0.1
+Stable tag: 0.0.2
 License: Proprietary
 
 Add-on for All-in-one Download that adds support for Rotten Tomatoes URLs.
@@ -32,6 +32,9 @@ Simply paste a Rotten Tomatoes URL into All-in-one Download and the media inform
 3. Make sure the **All-in-one Download** plugin is also installed and active.
 
 == Changelog ==
+= 0.0.2 =
+
+feat : Add updater
 
 = 0.0.1 =
 * Initial release.

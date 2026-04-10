@@ -1,0 +1,12 @@
+{
+    "name": "tcacamou/all-in-one-download-rottentomatoes",
+    "require": {
+        "honemo/wp-github-updater": "^1.0",
+        "roots/wordpress": "^6.9"
+    },
+    "config": {
+        "allow-plugins": {
+            "roots/wordpress-core-installer": true
+        }
+    }
+}
