@@ -36,18 +36,15 @@ function process_movie( $media )
 {
     do_action('alli1d_log', 'Rotten tomatoes - Processing movie: ' . $media->url, Logs::NOTICE, Logs::MEDIAS_LOG);
 
-    // Initialize cURL to fetch the page content
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $media->url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    $html = curl_exec($ch);
-    curl_close($ch);
-
-    if (!$html ) {
+    $response = wp_safe_remote_get( $media->url, [
+        'timeout'    => 15,
+        'user-agent' => 'Mozilla/5.0 (compatible; AllInOneDownload/1.0)',
+    ] );
+    if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
         do_action('alli1d_log', 'Rotten tomatoes - Failed to fetch content from URL: ' . $media->url, Logs::ERROR, Logs::MEDIAS_LOG);
         return $media;
     }
+    $html = wp_remote_retrieve_body( $response );
 
     // Extract the title from the <rt-text slot="title" ...> tag
     if (preg_match('/<rt-text[^>]*slot="title"[^>]*>(.*?)<\/rt-text>/i', $html, $matches) ) {
@@ -77,15 +74,12 @@ function process_movie( $media )
     $image_name = sanitize_file_name($media->title) . '.jpeg';
     $image_path = $rottentomatoes_dir . $image_name;
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $image_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    $image_data = curl_exec($ch);
-    curl_close($ch);
-
-    if ($image_data ) {
-        file_put_contents($image_path, $image_data);
+    $image_response = wp_safe_remote_get( $image_url, [
+        'timeout'    => 15,
+        'user-agent' => 'Mozilla/5.0 (compatible; AllInOneDownload/1.0)',
+    ] );
+    if ( ! is_wp_error( $image_response ) && 200 === (int) wp_remote_retrieve_response_code( $image_response ) ) {
+        file_put_contents( $image_path, wp_remote_retrieve_body( $image_response ) );
         $media->cover_image = $upload_dir['baseurl'] . '/rottentomatoes/'. $image_name;
     } else {
         do_action('alli1d_log', 'Rotten tomatoes - Failed to download image from URL: ' . $image_url, Logs::ERROR, Logs::MEDIAS_LOG);
@@ -101,18 +95,15 @@ function process_tv_show( $media )
 {
     do_action('alli1d_log', 'Rotten tomatoes - Processing TV show: ' . $media->url, Logs::NOTICE, Logs::MEDIAS_LOG);
 
-    // Initialize cURL to fetch the page content
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $media->url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    $html = curl_exec($ch);
-    curl_close($ch);
-
-    if (!$html ) {
+    $response = wp_safe_remote_get( $media->url, [
+        'timeout'    => 15,
+        'user-agent' => 'Mozilla/5.0 (compatible; AllInOneDownload/1.0)',
+    ] );
+    if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
         do_action('alli1d_log', 'Rotten tomatoes - Failed to fetch content from URL: ' . $media->url, Logs::ERROR, Logs::MEDIAS_LOG);
         return $media;
     }
+    $html = wp_remote_retrieve_body( $response );
 
     // Extract the title from the <rt-text slot="title" ...> tag
     if (preg_match('/<rt-text[^>]*slot="title"[^>]*>(.*?)<\/rt-text>/i', $html, $matches) ) {
@@ -142,15 +133,12 @@ function process_tv_show( $media )
     $image_name = sanitize_file_name($media->title) . '.jpeg';
     $image_path = $rottentomatoes_dir . $image_name;
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $image_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    $image_data = curl_exec($ch);
-    curl_close($ch);
-
-    if ($image_data ) {
-        file_put_contents($image_path, $image_data);
+    $image_response = wp_safe_remote_get( $image_url, [
+        'timeout'    => 15,
+        'user-agent' => 'Mozilla/5.0 (compatible; AllInOneDownload/1.0)',
+    ] );
+    if ( ! is_wp_error( $image_response ) && 200 === (int) wp_remote_retrieve_response_code( $image_response ) ) {
+        file_put_contents( $image_path, wp_remote_retrieve_body( $image_response ) );
         $media->cover_image = $upload_dir['baseurl'] . '/rottentomatoes/'. $image_name;
     } else {
         do_action('alli1d_log', 'Rotten tomatoes - Failed to download image from URL: ' . $image_url, Logs::ERROR, Logs::MEDIAS_LOG);
