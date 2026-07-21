@@ -4,7 +4,7 @@ Tags: download, rotten tomatoes, movies, tv shows, media
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.0.6
+Stable tag: 0.0.7
 License: Proprietary
 
 Add-on for All-in-one Download that adds support for Rotten Tomatoes URLs.
