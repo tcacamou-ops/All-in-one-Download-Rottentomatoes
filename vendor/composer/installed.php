@@ -3,7 +3,7 @@
         'name' => 'tcacamou/all-in-one-download-rottentomatoes',
         'pretty_version' => 'dev-trunk',
         'version' => 'dev-trunk',
-        'reference' => '9c08493ce5eb0395605822a509fc7975ba4e8b4c',
+        'reference' => '2bf018f4e3e6bf0604282006b24c2e8632f8e51d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'tcacamou/all-in-one-download-rottentomatoes' => array(
             'pretty_version' => 'dev-trunk',
             'version' => 'dev-trunk',
-            'reference' => '9c08493ce5eb0395605822a509fc7975ba4e8b4c',
+            'reference' => '2bf018f4e3e6bf0604282006b24c2e8632f8e51d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
